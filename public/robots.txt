@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Disallow admin area
+Disallow: /admin
+Disallow: /admin/
+
+# Disallow test files
+Disallow: /test_*
+
+# Sitemap
+Sitemap: https://cetako.com/sitemap.xml
