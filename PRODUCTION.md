@@ -47,7 +47,7 @@ chown -R www-data:www-data storage bootstrap/cache
 ```nginx
 server {
     listen 80;
-    server_name cetako.com www.cetako.com;
+    server_name cetako.id www.cetako.id;
     root /var/www/cetako/public;
     index index.php;
 
@@ -71,7 +71,7 @@ server {
 Pastikan `mod_rewrite` aktif.
 
 ## Login Admin
-- URL: `https://domain.com/admin/login`
+- URL: `https://cetako.id/admin/login`
 - Email: `admin@cetako.com`
 - Password: `cetako2026`
 - ⚠️ **Ganti password segera setelah login pertama!**
