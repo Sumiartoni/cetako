@@ -99,37 +99,44 @@
 
             <div class="contact-form-wrapper animate-on-scroll animate-delay-2">
                 <h3>Kirim Pesan</h3>
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Terima kasih! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.');">
+                @if(session('success'))
+                    <div style="background:#dcfce7;color:#16a34a;padding:12px 16px;border-radius:10px;margin-bottom:16px;font-size:0.88rem;border:1px solid #bbf7d0;">✓ {{ session('success') }}</div>
+                @endif
+                @if(session('error'))
+                    <div style="background:#fee2e2;color:#dc2626;padding:12px 16px;border-radius:10px;margin-bottom:16px;font-size:0.88rem;border:1px solid #fecaca;">✗ {{ session('error') }}</div>
+                @endif
+                <form class="contact-form" action="{{ route('kontak.send') }}" method="POST">
+                    @csrf
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Nama Lengkap</label>
-                            <input type="text" id="name" placeholder="Nama Anda" required>
+                            <input type="text" name="name" id="name" placeholder="Nama Anda" value="{{ old('name') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">No. WhatsApp</label>
-                            <input type="tel" id="phone" placeholder="08xxx" required>
+                            <input type="tel" name="phone" id="phone" placeholder="08xxx" value="{{ old('phone') }}" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="email@perusahaan.com" required>
+                        <input type="email" name="email" id="email" placeholder="email@perusahaan.com" value="{{ old('email') }}" required>
                     </div>
                     <div class="form-group">
                         <label for="service">Layanan yang Dibutuhkan</label>
-                        <select id="service" required>
+                        <select name="service" id="service" required>
                             <option value="">Pilih Layanan</option>
-                            <option>Digital Printing</option>
-                            <option>Advertising</option>
-                            <option>Packaging</option>
-                            <option>Offset Printing</option>
-                            <option>Desain Grafis</option>
-                            <option>Merchandise</option>
-                            <option>Lainnya</option>
+                            <option {{ old('service') == 'Digital Printing' ? 'selected' : '' }}>Digital Printing</option>
+                            <option {{ old('service') == 'Advertising' ? 'selected' : '' }}>Advertising</option>
+                            <option {{ old('service') == 'Packaging' ? 'selected' : '' }}>Packaging</option>
+                            <option {{ old('service') == 'Offset Printing' ? 'selected' : '' }}>Offset Printing</option>
+                            <option {{ old('service') == 'Desain Grafis' ? 'selected' : '' }}>Desain Grafis</option>
+                            <option {{ old('service') == 'Merchandise' ? 'selected' : '' }}>Merchandise</option>
+                            <option {{ old('service') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="message">Detail Kebutuhan</label>
-                        <textarea id="message" rows="5" placeholder="Ceritakan kebutuhan cetak Anda: jenis produk, jumlah, ukuran, deadline, dll..." required></textarea>
+                        <textarea name="message" id="message" rows="5" placeholder="Ceritakan kebutuhan cetak Anda: jenis produk, jumlah, ukuran, deadline, dll..." required>{{ old('message') }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width:100%;">
                         <i data-lucide="send" style="width:16px;height:16px;"></i>

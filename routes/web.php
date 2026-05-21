@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\StatController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ContactController;
 
 // Landing Page
 Route::get('/', function () {
@@ -32,6 +33,7 @@ Route::get('/portofolio', function () {
 Route::get('/kontak', function () {
     return view('pages.kontak');
 })->name('kontak');
+Route::post('/kontak', [ContactController::class, 'send'])->name('kontak.send');
 
 // SEO: Sitemap
 Route::get('/sitemap.xml', function () {

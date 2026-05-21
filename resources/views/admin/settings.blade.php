@@ -14,6 +14,7 @@
         <button type="button" class="tab" data-tab="about">Tentang Kami</button>
         <button type="button" class="tab" data-tab="services">Layanan</button>
         <button type="button" class="tab" data-tab="workflow">Alur Kerja</button>
+        <button type="button" class="tab" data-tab="smtp">Email / SMTP</button>
     </div>
 
     {{-- Company Tab --}}
@@ -318,6 +319,53 @@
                 </div>
             </div>
             @endfor
+        </div>
+    </div>
+
+    {{-- SMTP Tab --}}
+    <div class="tab-content" id="tab-smtp">
+        <div class="card" style="padding:28px;">
+            <div style="font-weight:700;color:var(--navy);margin-bottom:20px;">Konfigurasi Email (SMTP)</div>
+            <p style="font-size:0.85rem;color:#64748b;margin-bottom:20px;">Konfigurasi ini digunakan untuk mengirim email dari form kontak website ke email Anda.</p>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">SMTP Host</label>
+                    <input type="text" name="smtp_host" class="form-input" value="{{ $settings['smtp']['smtp_host'] ?? '' }}" placeholder="mail.cetako.id">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">SMTP Port</label>
+                    <input type="text" name="smtp_port" class="form-input" value="{{ $settings['smtp']['smtp_port'] ?? '465' }}" placeholder="465">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">SMTP Username</label>
+                    <input type="text" name="smtp_username" class="form-input" value="{{ $settings['smtp']['smtp_username'] ?? '' }}" placeholder="noreply@cetako.id">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">SMTP Password</label>
+                    <input type="password" name="smtp_password" class="form-input" value="{{ $settings['smtp']['smtp_password'] ?? '' }}" placeholder="••••••••">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Encryption</label>
+                    <select name="smtp_encryption" class="form-select">
+                        <option value="ssl" {{ ($settings['smtp']['smtp_encryption'] ?? 'ssl') == 'ssl' ? 'selected' : '' }}>SSL</option>
+                        <option value="tls" {{ ($settings['smtp']['smtp_encryption'] ?? '') == 'tls' ? 'selected' : '' }}>TLS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Pengirim (From)</label>
+                    <input type="email" name="smtp_from_email" class="form-input" value="{{ $settings['smtp']['smtp_from_email'] ?? '' }}" placeholder="noreply@cetako.id">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email Penerima (Tujuan form kontak)</label>
+                <input type="email" name="smtp_to_email" class="form-input" value="{{ $settings['smtp']['smtp_to_email'] ?? '' }}" placeholder="info@cetako.id">
+                <div class="form-hint">Email ini akan menerima pesan dari form kontak website</div>
+            </div>
         </div>
     </div>
 

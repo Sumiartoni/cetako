@@ -19,6 +19,7 @@ class SettingController extends Controller
             'about' => SiteSetting::getGroup('about'),
             'services' => SiteSetting::getGroup('services'),
             'workflow' => SiteSetting::getGroup('workflow'),
+            'smtp' => SiteSetting::getGroup('smtp'),
         ];
         return view('admin.settings', compact('settings'));
     }
@@ -46,6 +47,10 @@ class SettingController extends Controller
                 'workflow_2_title', 'workflow_2_desc',
                 'workflow_3_title', 'workflow_3_desc',
                 'workflow_4_title', 'workflow_4_desc'
+            ],
+            'smtp' => [
+                'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password',
+                'smtp_encryption', 'smtp_from_email', 'smtp_to_email'
             ]
         ];
 
