@@ -20,6 +20,7 @@ class SettingController extends Controller
             'services' => SiteSetting::getGroup('services'),
             'workflow' => SiteSetting::getGroup('workflow'),
             'smtp' => SiteSetting::getGroup('smtp'),
+            'analytics' => SiteSetting::getGroup('analytics'),
         ];
         return view('admin.settings', compact('settings'));
     }
@@ -51,7 +52,8 @@ class SettingController extends Controller
             'smtp' => [
                 'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password',
                 'smtp_encryption', 'smtp_from_email', 'smtp_to_email'
-            ]
+            ],
+            'analytics' => ['ga_measurement_id']
         ];
 
         foreach ($fields as $group => $keys) {

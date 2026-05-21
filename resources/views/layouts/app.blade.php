@@ -314,6 +314,13 @@
         }
         @media (max-width: 480px) { .section-title { font-size: 1.5rem; } }
     </style>
+    {{-- Google Analytics --}}
+    @php $__gaId = \App\Models\SiteSetting::where('key', 'ga_measurement_id')->value('value'); @endphp
+    @if($__gaId)
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $__gaId }}"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','{{ $__gaId }}');</script>
+    @endif
+
     @yield('styles')
 </head>
 <body>

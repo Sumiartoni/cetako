@@ -15,6 +15,7 @@
         <button type="button" class="tab" data-tab="services">Layanan</button>
         <button type="button" class="tab" data-tab="workflow">Alur Kerja</button>
         <button type="button" class="tab" data-tab="smtp">Email / SMTP</button>
+        <button type="button" class="tab" data-tab="analytics">Analytics</button>
     </div>
 
     {{-- Company Tab --}}
@@ -319,6 +320,20 @@
                 </div>
             </div>
             @endfor
+        </div>
+    </div>
+
+    {{-- Analytics Tab --}}
+    <div class="tab-content" id="tab-analytics">
+        <div class="card" style="padding:28px;">
+            <div style="font-weight:700;color:var(--navy);margin-bottom:20px;">Google Analytics</div>
+            <p style="font-size:0.85rem;color:#64748b;margin-bottom:20px;">Masukkan Measurement ID dari Google Analytics 4 untuk memantau traffic website. Dapatkan ID dari <a href="https://analytics.google.com" target="_blank" style="color:var(--red);">analytics.google.com</a></p>
+
+            <div class="form-group">
+                <label class="form-label">Google Analytics Measurement ID</label>
+                <input type="text" name="ga_measurement_id" class="form-input" value="{{ $settings['analytics']['ga_measurement_id'] ?? '' }}" placeholder="G-XXXXXXXXXX">
+                <div class="form-hint">Format: G-XXXXXXXXXX (dari GA4). Kosongkan jika tidak ingin menggunakan Analytics.</div>
+            </div>
         </div>
     </div>
 
